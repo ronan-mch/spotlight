@@ -5,7 +5,7 @@
   </div>
   <div class="pull-right">
     <% if Spotlight::Engine.config.new_resource_partials.any? %>
-      <%= link_to t('.new.repo_item'), new_exhibit_catalog_path(current_exhibit), class: 'btn btn-default' %>
+      <%= link_to t('.new.repo_item'), new_polymorphic_path([@exhibit, @exhibit.blacklight_config.document_model.new]), class: 'btn btn-default' %>
     <% end %>
     
     <% if Spotlight::Engine.config.uploaded_resource_partials.any? %>

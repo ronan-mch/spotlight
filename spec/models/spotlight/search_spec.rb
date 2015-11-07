@@ -15,8 +15,6 @@ describe Spotlight::Search, type: :model do
                      blacklight_config.index.title_field => 'title')
   end
 
-  it { is_expected.to be_a Spotlight::Catalog::AccessControlsEnforcement }
-
   it 'has a default feature image' do
     allow(subject).to receive_messages(documents: [document])
     subject.save!

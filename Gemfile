@@ -13,6 +13,10 @@ gemspec
 # To use debugger
 # gem 'byebug'
 
+gem 'blacklight', github: 'projectblacklight/blacklight'
+gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
+gem 'blacklight-oembed', github: 'sul-dlss/blacklight-oembed', branch: 'blacklight6'
+
 # BEGIN ENGINE_CART BLOCK
 # engine_cart: 0.8.0
 # engine_cart stanza: 0.8.0

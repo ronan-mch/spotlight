@@ -45,7 +45,7 @@ module Spotlight
       if current_exhibit
         exhibit_search_action_url(*args)
       else
-        main_app.catalog_index_url(*args)
+        main_app.search_catalog_url(*args)
       end
     end
 
@@ -63,9 +63,9 @@ module Spotlight
       options.except! :exhibit_id, :only_path
 
       if only_path
-        spotlight.exhibit_catalog_index_path(current_exhibit, *args, options)
+        spotlight.search_exhibit_catalog_path(current_exhibit, *args, options)
       else
-        spotlight.exhibit_catalog_index_url(current_exhibit, *args, options)
+        spotlight.search_exhibit_catalog_url(current_exhibit, *args, options)
       end
     end
 
@@ -74,11 +74,7 @@ module Spotlight
       only_path = options[:only_path]
       options.except! :exhibit_id, :only_path
 
-      if only_path
-        spotlight.exhibit_catalog_facet_url(current_exhibit, *args, options)
-      else
-        spotlight.exhibit_catalog_facet_url(current_exhibit, *args, options)
-      end
+      spotlight.facet_exhibit_catalog_url(current_exhibit, *args, options)
     end
   end
 end

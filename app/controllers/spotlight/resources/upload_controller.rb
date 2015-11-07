@@ -6,7 +6,7 @@ module Spotlight
     ##
     # Creating new exhibit items from single-item entry forms
     # or batch CSV upload
-    class UploadController < ApplicationController
+    class UploadController < Spotlight::ApplicationController
       helper :all
 
       before_action :authenticate_user!
@@ -18,7 +18,7 @@ module Spotlight
       def new
         add_breadcrumb t(:'spotlight.exhibits.breadcrumb', title: @exhibit.title), exhibit_root_path(@exhibit)
         add_breadcrumb t(:'spotlight.curation.sidebar.header'), exhibit_dashboard_path(@exhibit)
-        add_breadcrumb t(:'spotlight.curation.sidebar.items'), admin_exhibit_catalog_index_path(@exhibit)
+        add_breadcrumb t(:'spotlight.curation.sidebar.items'), admin_exhibit_catalog_path(@exhibit)
         add_breadcrumb t(:'spotlight.resources.upload.new.header'), new_exhibit_resources_upload_path(@exhibit)
       end
 
@@ -31,11 +31,11 @@ module Spotlight
           if params['add-and-continue']
             redirect_to new_exhibit_resources_upload_path(@resource.exhibit)
           else
-            redirect_to admin_exhibit_catalog_index_path(@resource.exhibit, sort: :timestamp)
+            redirect_to admin_exhibit_catalog_path(@resource.exhibit, sort: :timestamp)
           end
         else
           flash[:error] = t('spotlight.resources.upload.error')
-          redirect_to admin_exhibit_catalog_index_path(@resource.exhibit, sort: :timestamp)
+          redirect_to admin_exhibit_catalog_path(@resource.exhibit, sort: :timestamp)
         end
       end
       # rubocop:enable Metrics/MethodLength

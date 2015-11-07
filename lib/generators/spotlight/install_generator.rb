@@ -10,7 +10,7 @@ module Spotlight
 
     def inject_spotlight_routes
       route "mount Spotlight::Engine, at: 'spotlight'"
-      gsub_file 'config/routes.rb', /^\s*root.*/ do |match|
+      gsub_file 'config/routes.rb', /^[\t ]*root.*/ do |match|
         '#' + match + ' # replaced by spotlight_root'
       end
 
@@ -71,12 +71,12 @@ module Spotlight
     end
 
     def add_osd_viewer
-      gem 'blacklight-gallery', '>= 0.3.0'
+      gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
       generate 'blacklight_gallery:install'
     end
 
     def add_oembed
-      gem 'blacklight-oembed'
+      gem 'blacklight-oembed', github: 'sul-dlss/blacklight-oembed', branch: 'blacklight6'
       generate 'blacklight_oembed:install'
     end
 

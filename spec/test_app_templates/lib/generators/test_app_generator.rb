@@ -4,8 +4,9 @@ class TestAppGenerator < Rails::Generators::Base
   source_root '../spec/test_app_templates'
 
   def add_gems
-    gem 'blacklight', '~> 5.16'
-    gem 'blacklight-gallery', '>= 0.3.0'
+    gem 'blacklight', github: 'projectblacklight/blacklight'
+    gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
+    gem 'blacklight-oembed', github: 'sul-dlss/blacklight-oembed', branch: 'blacklight6'
     gem 'jettywrapper'
     Bundler.with_clean_env do
       run 'bundle install'

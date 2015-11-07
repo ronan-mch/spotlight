@@ -21,7 +21,6 @@ module Spotlight
     before_create :set_default_featured_image
 
     include Blacklight::SearchHelper
-    include Spotlight::Catalog::AccessControlsEnforcement
 
     def thumbnail_image_url
       thumbnail.image.thumb.url if thumbnail && thumbnail.image

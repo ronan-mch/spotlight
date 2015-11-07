@@ -50,7 +50,8 @@ module Spotlight
     # the current exhibit context
     def document_action_path(action_opts, url_opts = nil)
       if current_exhibit
-        spotlight.send(action_opts.path || "exhibit_#{action_opts.key}_#{controller_name}_path", url_opts)
+        model_name = current_exhibit.blacklight_config.document_model.model_name
+        spotlight.send(action_opts.path || "#{action_opts.key}_exhibit_#{model_name.collection}_path", url_opts)
       else
         super
       end
@@ -60,7 +61,7 @@ module Spotlight
     # Helper to turn tag data into facets
     def url_to_tag_facet(tag)
       if current_exhibit
-        search_action_url(add_facet_params(Spotlight::SolrDocument.solr_field_for_tagger(current_exhibit), tag, {}))
+        search_action_url(search_state.reset.add_facet_params(Spotlight::SolrDocument.solr_field_for_tagger(current_exhibit), tag))
       else
         search_action_url(q: tag)
       end
@@ -131,11 +132,6 @@ module Spotlight
       else
         (URI.parse(Rails.application.config.asset_host || root_url) + url).to_s
       end
-    end
-
-    def render_save_this_search?
-      (current_exhibit && can?(:curate, current_exhibit)) &&
-        !(params[:controller] == 'spotlight/catalog' && params[:action] == 'admin')
     end
 
     def uploaded_field_label(config)

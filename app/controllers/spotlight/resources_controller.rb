@@ -31,7 +31,7 @@ module Spotlight
         if from_popup?
           render layout: false, text: '<html><script>window.close();</script></html>'
         else
-          redirect_to admin_exhibit_catalog_index_path(@resource.exhibit, sort: :timestamp)
+          redirect_to admin_exhibit_catalog_path(@resource.exhibit, sort: :timestamp)
         end
       else
         render action: 'new'
@@ -42,7 +42,7 @@ module Spotlight
     def reindex_all
       @exhibit.reindex_later
 
-      redirect_to admin_exhibit_catalog_index_path(@exhibit), notice: t(:'spotlight.resources.reindexing_in_progress')
+      redirect_to admin_exhibit_catalog_path(@exhibit), notice: t(:'spotlight.resources.reindexing_in_progress')
     end
 
     protected

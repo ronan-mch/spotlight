@@ -6,10 +6,6 @@ module Spotlight
     include Blacklight::Catalog
     include Spotlight::Base
 
-    require 'spotlight/catalog/access_controls_enforcement'
-
-    include Spotlight::Catalog::AccessControlsEnforcement
-
     included do
       before_filter do
         if current_exhibit && can?(:curate, current_exhibit)
@@ -22,6 +18,11 @@ module Spotlight
                                             }
         end
       end
+    end
+
+    def render_save_this_search?
+      (current_exhibit && can?(:curate, current_exhibit)) &&
+        !(params[:controller] == 'spotlight/catalog' && params[:action] == 'admin')
     end
   end
 end
