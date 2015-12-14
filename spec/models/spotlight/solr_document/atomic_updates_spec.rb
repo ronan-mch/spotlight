@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Spotlight::SolrDocument::AtomicUpdates, type: :model do
   let(:blacklight_solr) { double }
   subject do
-    ::SolrDocument.new.extend(described_class)
+    blacklight_config.document_model.new.extend(described_class)
   end
 
   before do
