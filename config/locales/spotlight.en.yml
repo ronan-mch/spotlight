@@ -54,6 +54,7 @@ en:
         batch_error: "There was an error updating the requested pages."
         destroyed: "The %{model} was deleted."
       exhibit: *spotlight_default
+      exhibit_filter: *spotlight_default
       search: *spotlight_default
       site: *spotlight_default
       contact_form:
@@ -77,6 +78,9 @@ en:
     label:
       solr_document:
         exhibit_tag_list: "Tags"
+      spotlight/exhibit_filter:
+        field: 'Solr Field'
+        value: 'Field Value'
   activerecord:
     models:
       spotlight:
@@ -353,6 +357,8 @@ en:
         visit_exhibit: "Visit exhibit"
       new:
         header: Create a new exhibit
+      filter:
+        heading: Filter items
       import:
         heading: Import data
         instructions: You can import an exhibit JSON file exported from this application to use that data file to define this exhibit.
