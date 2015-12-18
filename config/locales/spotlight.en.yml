@@ -81,6 +81,8 @@ en:
       spotlight/exhibit_filter:
         field: 'Solr Field'
         value: 'Field Value'
+      spotlight/exhibit:
+        tag_list: 'Tags'
   activerecord:
     models:
       spotlight:
@@ -95,6 +97,9 @@ en:
         display_title: "Show title"
       "spotlight/masthead":
         display: "Show background image in masthead"
+    help:
+      spotlight/exhibit:
+        tag_list: "Enter tags separated by commas."
   blacklight:
     search:
       fields:
